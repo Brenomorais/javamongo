@@ -42,6 +42,9 @@ public class Main {
 		//Update in register of one aluno of collection		
 		alunos.updateOne(Filters.eq("nome","Breno"), new Document("$set", new Document("nome","Breno Lopes")));
 		
+		//Delete regist of aluno in collection		
+		alunos.deleteOne(Filters.eq("nome","Breno Lopes"));
+		
 		client.close();
 		
 	}
