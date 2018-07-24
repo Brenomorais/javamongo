@@ -8,6 +8,7 @@ import org.bson.Document;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 public class Main {
 	
@@ -36,9 +37,12 @@ public class Main {
 						.append("nome", "Espanhol")
 						.append("nivel", "basico")));
 		
-		alunos.insertOne(newAluno);
-				
-		client.close();		
+		alunos.insertOne(newAluno);				
+	
+		//Update in register of one aluno of collection		
+		alunos.updateOne(Filters.eq("nome","Breno"), new Document("$set", new Document("nome","Breno Lopes")));
+		
+		client.close();
 		
 	}
 
