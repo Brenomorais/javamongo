@@ -12,6 +12,7 @@ import com.mongodb.client.model.Filters;
 
 public class Main {
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		// Test conection app java with database mongodb base
@@ -25,7 +26,6 @@ public class Main {
 		
 		//Insert new register collection at aluno
 		
-		@SuppressWarnings("deprecation")
 		Document newAluno = new Document("nome","Antonio")
 				.append("data_nascimento", new Date(2003, 10,10))
 				.append("curso", new Document("nome", "Historia"))
@@ -41,6 +41,9 @@ public class Main {
 	
 		//Update in register of one aluno of collection		
 		alunos.updateOne(Filters.eq("nome","Breno"), new Document("$set", new Document("nome","Breno Lopes")));
+		
+		//Update in document alunos at data_nascimento
+		alunos.updateOne(Filters.eq("nome", "Felipe"), new Document("$set", new Document("data_nascimento", new Date(1993, 10, 10))));
 		
 		//Delete regist of aluno in collection		
 		alunos.deleteOne(Filters.eq("nome","Breno Lopes"));
